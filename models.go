@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/golang-jwt/jwt/v4"
+	"k8s.io/apiextensions-apiserver/pkg/apis/apiextensions"
 )
 
 // GetQueryParams converts the struct to map[string]string
@@ -208,7 +209,7 @@ type User struct {
 	Email                      *string                     `json:"email,omitempty"`
 	FederationLink             *string                     `json:"federationLink,omitempty"`
 	Attributes                 *map[string][]string        `json:"attributes,omitempty"`
-	DisableableCredentialTypes *[]interface{}              `json:"disableableCredentialTypes,omitempty"`
+	DisableableCredentialTypes *[]apiextensions.JSON       `json:"disableableCredentialTypes,omitempty"`
 	RequiredActions            *[]string                   `json:"requiredActions,omitempty"`
 	Access                     *map[string]bool            `json:"access,omitempty"`
 	ClientRoles                *map[string][]string        `json:"clientRoles,omitempty"`
@@ -893,9 +894,9 @@ type ModifyAuthenticationExecutionRepresentation struct {
 
 // MultiValuedHashMap represents something
 type MultiValuedHashMap struct {
-	Empty      *bool    `json:"empty,omitempty"`
-	LoadFactor *float32 `json:"loadFactor,omitempty"`
-	Threshold  *int32   `json:"threshold,omitempty"`
+	Empty      *bool   `json:"empty,omitempty"`
+	LoadFactor *string `json:"loadFactor,omitempty"`
+	Threshold  *int32  `json:"threshold,omitempty"`
 }
 
 // AuthorizationParameters represents the options to obtain get an authorization
